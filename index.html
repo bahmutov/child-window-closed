@@ -1,0 +1,44 @@
+<head>
+  <style>
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      text-align: center;
+      font-size: 5rem;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Home</h1>
+  <p>Click on the <a href="child.html">link</a> to open the child window</p>
+  <div class="overlay" style="display: none">
+    <span>Close the child window to continue</span>
+  </div>
+  <script>
+    document.querySelector('a').addEventListener('click', (e) => {
+      e.preventDefault()
+      const overlay = document.querySelector('.overlay')
+      overlay.setAttribute('style', '')
+
+      const childWindow = window.open(
+        'child.html',
+        '_blank',
+        'width=400,height=250',
+      )
+      const timer = setInterval(() => {
+        if (childWindow.closed) {
+          console.log('child window has closed')
+          overlay.setAttribute('style', 'display:none')
+          clearInterval(timer)
+        }
+      }, 100)
+    })
+  </script>
+</body>
