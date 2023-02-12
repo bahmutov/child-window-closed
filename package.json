@@ -1,7 +1,8 @@
 {
   "name": "child-window-closed",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dealing with the parent window watching the child window closed property",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
