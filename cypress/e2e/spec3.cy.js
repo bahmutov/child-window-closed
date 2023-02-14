@@ -1,16 +1,7 @@
 /// <reference types="cypress" />
 
-it('opens the child window (using cy.invoke)', () => {
+it('opens the child window (using Reflect.set)', () => {
   const mockWindow = {}
-  const mockWindowController = {
-    close() {
-      // prevent calling multiple times
-      if (mockWindow.changed) {
-        throw new Error('Cannot close a closed window')
-      }
-      mockWindow.closed = true
-    },
-  }
   cy.visit('index.html').then((win) => {
     cy.stub(win, 'open').returns(mockWindow).as('open')
   })
@@ -18,6 +9,6 @@ it('opens the child window (using cy.invoke)', () => {
   cy.get('@open').should('have.been.calledWith', 'child.html')
   cy.get('.overlay').should('be.visible').wait(1000)
   // set parent window is watching the "window.closed" property
-  cy.wrap(mockWindowController).invoke('close')
+  cy.wrap(Reflect).invoke('set', mockWindow, 'closed', true)
   cy.get('.overlay').should('not.be.visible')
 })

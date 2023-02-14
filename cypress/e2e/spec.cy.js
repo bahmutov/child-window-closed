@@ -10,6 +10,7 @@ it('opens the child window', () => {
   cy.get('.overlay')
     .should('be.visible')
     .wait(1000)
+    .should('be.visible')
     .then(() => {
       // set parent window is watching the "window.closed" property
       mockWindow.closed = true
