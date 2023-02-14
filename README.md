@@ -2,6 +2,8 @@
 
 > Dealing with the parent window watching the child window closed property
 
+📝 Read the blog post [Test Child Window Closed Scenario](https://glebbahmutov.com/blog/child-window-closed/)
+
 ## Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2023
